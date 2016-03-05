@@ -31,13 +31,10 @@ public class Login extends HttpServlet {
 		LoginService loginService = new LoginService();
 		boolean result = loginService.autheticate(userName, password);
 		if (result) {
-			response.sendRedirect("Profile.html");
+			response.sendRedirect("Profile.jsp");
 			return;
 		} else {
-			response.sendRedirect("Login.html");
-			System.out.println(result);
-			System.out.println(userName + " " + password);
-
+			response.sendRedirect("Login.jsp");
 			return;
 
 		}
