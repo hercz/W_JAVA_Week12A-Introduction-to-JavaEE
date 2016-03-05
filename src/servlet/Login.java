@@ -35,6 +35,9 @@ public class Login extends HttpServlet {
 			return;
 		} else {
 			response.sendRedirect("Login.html");
+			System.out.println(result);
+			System.out.println(userName + " " + password);
+
 			return;
 
 		}
