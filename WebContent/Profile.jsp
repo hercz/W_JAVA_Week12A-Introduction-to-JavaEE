@@ -9,13 +9,16 @@
 </head>
 <body>
 <%
+String userName = null;
 String user = (String) session.getAttribute("user");
 if(session.getAttribute("user") == null){
-    response.sendRedirect("login.html");
+    response.sendRedirect("Login.jsp");
 }
 %>
 Welcome <%=user%>!
 
-<br> <input type="submit" value = "LogOut" /> 
+<form action="LogOut"  method="post">
+<input type="submit" value="Logout" >
+</form>
 </body>
 </html>
