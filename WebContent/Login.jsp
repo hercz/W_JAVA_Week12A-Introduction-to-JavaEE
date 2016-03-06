@@ -7,11 +7,10 @@
 <title>LOGIN</title>
 </head>
 <body>
-<h1>LogIn</h1>
 <h5>Please fill the blank boxes with your user name and password.</h5>
 <form action="login" method = "post">  
-    <br>Username: <input type="text" name = "userName" />
-    <br>Password: <input type="password" name = "password"/>
+    <br>Username: <input type="text" name = "userName"  />
+    <br>Password: <input type="password" name = "password" />
     <br> <input type="submit" value = "Login" /> 	
 </form>
 </body>
