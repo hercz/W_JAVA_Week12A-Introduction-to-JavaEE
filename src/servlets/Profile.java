@@ -13,17 +13,16 @@ import javax.servlet.http.HttpSession;
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		request.getRequestDispatcher("profile.html").include(request, response);
 
 		HttpSession session = request.getSession(false);
 		if (session != null) {
-			String name = (String) session.getAttribute("name");
-
-			out.print("Hello, " + name + " Welcome to Profile");
+			String name = (String) session.getAttribute("user");
+			out.print("Hello, " + name + ", you are here in your profile page.");
+			request.getRequestDispatcher("profile.html").include(request, response);
 		} else {
 			out.print("Please login first");
 			request.getRequestDispatcher("login.html").include(request, response);

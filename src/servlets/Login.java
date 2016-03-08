@@ -16,6 +16,24 @@ import javax.servlet.http.HttpSession;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			String name = (String) session.getAttribute("user");
+			out.print("Hello, " + name + " You already logged in!");
+			request.getRequestDispatcher("profile.html").include(request, response);
+		} else {
+			out.print("Please login first");
+			request.getRequestDispatcher("login.html").include(request, response);
+		}
+		out.close();
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String userName, password;
@@ -23,23 +41,22 @@ public class Login extends HttpServlet {
 		String defPassword = "1234";
 
 		response.setContentType("text/html");
-
-		PrintWriter print = response.getWriter();
+		PrintWriter out = response.getWriter();
 
 		userName = request.getParameter("userName");
 		password = request.getParameter("password");
 
 		if (password.equals(defPassword) && userName.equals(defUserName)) {
-			print.print("Welcome " + userName + " friend!");
+			out.print("Welcome " + userName + " friend!");
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userName);
 			request.getRequestDispatcher("profile.html").include(request, response);
 
 		} else {
-			print.print("Bad username or password!");
+			out.print("Bad username or password!");
 			request.getRequestDispatcher("login.html").include(request, response);
 		}
-		print.close();
+		out.close();
 
 	}
 }
